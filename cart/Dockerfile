@@ -1,0 +1,7 @@
+FROM node:20
+COPY package.json .
+COPY *.js .
+RUN npm install
+ENV REDIS_HOST="redis"\
+    CATALOGUE_HOST="catalogue"
+CMD ["node","server.js"]
