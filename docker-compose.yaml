@@ -64,6 +64,4 @@ services:
       - rabbitmq:/var/lib/rabbitmq
 
 
-  payment:s
-    container_name: payment
-    image: 
+   
