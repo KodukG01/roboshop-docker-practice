@@ -55,7 +55,7 @@ services:
       - cart
 
   rabbitmq:
-    conatainer_name: rabbitmq
+    container_name: rabbitmq
     image:  rabbitmq:3
     environment:
       RABBITMQ_DEFAULT_USER: roboshop
@@ -64,6 +64,6 @@ services:
       - rabbitmq:/var/lib/rabbitmq
 
 
-  payment:
+  payment:s
     container_name: payment
     image: 
