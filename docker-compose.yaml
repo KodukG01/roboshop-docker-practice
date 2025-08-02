@@ -9,7 +9,7 @@ volumes:
   mysql:
   rabbitmq:
 
-service:
+services:
   mongodb:
     container_name: mongodb
     image: gautamjames/mongodb:v2
@@ -53,4 +53,3 @@ service:
     depends_on:
       - mysql
       - cart
-      
