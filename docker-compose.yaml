@@ -14,7 +14,7 @@ services:
     container_name: mongodb
     image: gautamjames/mongodb:v2
     volumes:
-    - mongodb: /data/db
+    - mongodb:/data/db
   
   catalogue:
     container_name: catalogue
@@ -26,7 +26,7 @@ services:
     container_name: redis
     image:  redis:7.0
     volumes:
-    - redis: /data
+    - redis:/data
 
   user:
     container_name: user
@@ -45,7 +45,7 @@ services:
     container_name: mysql
     image: gautamjames/mysql:v2
     volumes:
-      - mysql: /var/lib/mysql
+      - mysql:/var/lib/mysql
 
   shipping:
     container_name: shipping
