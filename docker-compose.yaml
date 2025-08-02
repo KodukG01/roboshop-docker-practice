@@ -78,3 +78,16 @@ services:
       - rabbitmq
       - cart
       - user
+
+  frontend: 
+    container_name: frontend
+    image: gautamjames/frontend
+    ports:
+     - "80:80"
+    depends_on:
+    - catalogue
+    - user
+    - cart
+    - shipping
+    - payment 
+
