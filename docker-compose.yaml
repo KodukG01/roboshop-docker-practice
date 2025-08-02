@@ -65,7 +65,7 @@ services:
 
   payment:
     container_name: payment
-    image: gautamjames/payment
+    image: gautamjames/payment:v2
     environment:
       CART_HOST: cart
       CART_PORT: 8080
