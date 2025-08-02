@@ -63,5 +63,18 @@ services:
     volumes:
       - rabbitmq:/var/lib/rabbitmq
 
-
-   
+  payment:
+    container_name: payment
+    image: gautamjames/payment
+    environment:
+      CART_HOST: cart
+      USER_PORT: 8080
+      USER_HOST: user
+      USER_PORT: 8080
+      AMQP_HOST: rabbitmq
+      AMQP_USER: roboshop
+      AMQP_PASS: roboshop123
+    depends_on:
+      - rabbitmq
+      - cart
+      - user
