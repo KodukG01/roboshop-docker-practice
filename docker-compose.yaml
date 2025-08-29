@@ -20,7 +20,7 @@ services:
     image: redis:7.0
 
   user:
-    conatainer_name: user
+    container_name: user
     image: gautamjames/user:v3
     depends_on:
     - redis
