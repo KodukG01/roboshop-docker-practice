@@ -70,7 +70,6 @@ services:
   frontend:
     container_name: frontend
     image: gautamjames/frontned:v3 
-    container_name: frontend
     ports:
       - "80:80"
     depends_on:
