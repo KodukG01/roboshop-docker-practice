@@ -2,92 +2,47 @@ networks:
   default:
     driver: bridge
     name: roboshop
-
-volumes:
-  mongodb:
-  redis:
-  mysql:
-  rabbitmq:
+     external: true
 
 services:
   mongodb:
     container_name: mongodb
-    image: gautamjames/mongodb:v2
-    volumes:
-    - mongodb:/data/db
-  
+    image: gautamjames/mongodb:v3
+
   catalogue:
-    container_name: catalogue
-    image:  gautamjames/catalogue:v2
-    depends_on:
-      - mongodb
+     container_name: catalogue
+     image: gautamjames/catalogue:v3
+     depends_on:
+     - mongodb
 
   redis:
     container_name: redis
-    image:  redis:7.0
-    volumes:
-    - redis:/data
+    image: redis:7.0
 
   user:
-    container_name: user
-    image:  gautamjames/user:v2
+    conatainer_name: user
+    image: gautamjames/user:v3
     depends_on:
-      - redis
-      - mongodb
+    - redis
+    - mongodb
+
   cart:
     container_name: cart
-    image: gautamjames/cart:v1
+    image: gautamjames/cart:v3
     depends_on:
-      - catalogue
-      - redis
+    - catalogue
+    - redis
 
   mysql:
     container_name: mysql
-    image: gautamjames/mysql:v2
-    volumes:
-      - mysql:/var/lib/mysql
+    image: gautamjames/mysql:v3
 
   shipping:
     container_name: shipping
-    image:  gautamjames/shipping:v2
+    image: gautamjames/shipping:v3
     depends_on:
-      - mysql
-      - cart
-
-  rabbitmq:
-    container_name: rabbitmq
-    image:  rabbitmq:3
-    environment:
-      RABBITMQ_DEFAULT_USER: roboshop
-      RABBITMQ_DEFAULT_PASS: roboshop123
-    volumes:
-      - rabbitmq:/var/lib/rabbitmq
-
-  payment:
-    container_name: payment
-    image: gautamjames/payment:v2
-    environment:
-      CART_HOST: cart
-      CART_PORT: 8080
-      USER_HOST: user
-      USER_PORT: 8080
-      AMQP_HOST: rabbitmq
-      AMQP_USER: roboshop
-      AMQP_PASS: roboshop123
-    depends_on:
-      - rabbitmq
-      - cart
-      - user
-
-  frontend: 
-    container_name: frontend
-    image: gautamjames/frontend:v2
-    ports:
-     - "80:80"
-    depends_on:
-    - catalogue
-    - user
+    - mysql
     - cart
-    - shipping
-    - payment 
+    
+
 
